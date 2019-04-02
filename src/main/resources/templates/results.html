@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="../static/css/styly.css"
+          th:href="${'css/styly.css'}"/>
+    <link rel="icon" href="../static/images/favicon.png"
+          th:href="${'images/favicon.png'}"/>
+    <title>Výchozí webová stránka | Java 2</title>
+</head>
+<body>
+
+
+    <h1>Bezdomovci</h1>
+    <h2>výsledky</h2>
+    <table class="results">
+        <thead>
+            <th>Správná odpověď</th>
+            <th>Moje odpověď</th>
+        </thead>
+        <tbody>
+            <tr th:each="answer : ${correctAnswers}">
+                <!--vyuziju vlastnost index, ktera ma pro prvni prvek v seznamu hodnotu 0 (koresponduje s indexovanim poli/listu)-->
+                <td th:text="${correctAnswers[answerStat.index]}">1</td>
+                <!--vyuziju pocitadlo ze seznamu correctAnswers i pro seznam myAnswers-->
+                <td th:text="${myAnswers[answerStat.index]}">2</td>
+            </tr>
+            <tr>
+                <td colspan="2" id="score">Správně zodpovězeno <span th:text="${scoredPoints}">0</span> z 8 otázek. </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+</body>
+</html>
