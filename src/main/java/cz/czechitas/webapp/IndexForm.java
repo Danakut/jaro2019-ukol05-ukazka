@@ -1,14 +1,16 @@
 package cz.czechitas.webapp;
 
+import java.util.List;
+
 public class IndexForm {
 
-    int[] answers;
+    List<String> answers;
 
-    public int[] getAnswers() {
+    public List<String> getAnswers() {
         return answers;
     }
 
-    public void setAnswers(int[] answers) {
+    public void setAnswers(List<String> answers) {
         this.answers = answers;
     }
 }

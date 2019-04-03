@@ -5,12 +5,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
 public class HlavniController {
 
-    private final int[] ANSWERS = {2,1,2,1,1,2,2,1};
+    //List vytvoreny metodou Arrays.asList ma nemmenou velikost, tj. nejde na nej pouzit add() ci remove()
+    private List<String> ANSWERS = Arrays.asList("2","1","2","1","1","2","2","1");
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView showIndex() {
@@ -32,8 +34,11 @@ public class HlavniController {
         model.addObject("correctAnswers", ANSWERS);
 
         int correctAnswerCounter = 0;
-        for (int i = 0; i < ANSWERS.length; i++) {
-            if (form.answers[i] == ANSWERS[i]) {
+        for (int i = 0; i < ANSWERS.size(); i++) {
+            //pro porovnani dvou Stringu pouzivam metodu equals(), ne ==
+            // == u objektu srovnava, jestli jde o jeden a ten samy objekt (neni, jsou to dva ruzne Stringy se stejnou hodnotou
+            //metoda equals() pro String vi, ze ma porovnavat jen hodnotu uvnitr a ne cely objekt
+            if (form.answers.get(i).equals(ANSWERS.get(i))) {
                 correctAnswerCounter++;
             }
         }
